@@ -1,0 +1,70 @@
+<div class="m-4">
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary cursor" (click)="add()">Add</button>
+  </div>
+  <form [formGroup]="userForm">
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th scope="col" class="td-fix-10">Index</th>
+          <th scope="col" class="td-fix">Name</th>
+          <th scope="col" class="td-fix">Country</th>
+          <th scope="col" class="td-fix">State</th>
+          <th scope="col" class="td-fix text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody class="align-middle" formArrayName="users" *ngFor="let user of usersData.controls ; let i=index">
+        <tr *ngIf="user.get('isEditable')?.value" [formGroupName]="i">
+          <td class="form-group td-fix-10">
+            {{ i + 1 }}
+          </td>
+          <td class="td-fix">
+            <input type="text" class="form-control" name="name" formControlName="name">
+          </td>
+          <td class="td-fix">
+            <select id="country" class="form-select" name="country" aria-label="Default select example"
+              formControlName="country">
+              <option value="India">India</option>
+              <option value="Russia">Russia</option>
+              <option value="Canada">Canada</option>
+              <option value="United States">United States</option>
+              <option value="China">China</option>
+            </select>
+          </td>
+          <td class="td-fix">
+            <select id="state" class="form-select" name="state" aria-label="Default select example"
+              formControlName="state">
+              <option value="Gujarat">Gujarat</option>
+              <option value="Maharastra">Maharastra</option>
+              <option value="New York">New York</option>
+              <option value="Washington">Washington</option>
+              <option value="Amazonas">Amazonas</option>
+            </select>
+          </td>
+          <td class="td-fix text-center">
+            <button class="btn btn-success cursor" (click)="save(user)">Save</button>
+            <button class="btn btn-danger cursor ms-2" (click)="delete(user.get('id')?.value)">Cancel</button>
+          </td>
+        </tr>
+        <tr *ngIf="!user.get('isEditable')?.value">
+          <td class="form-group td-fix-10">
+            {{ i + 1 }}
+          </td>
+          <td class="td-fix">
+            {{user.get('name')?.value}}
+          </td>
+          <td class="td-fix">
+            {{user.get('country')?.value}}
+          </td>
+          <td class="td-fix">
+            {{user.get('state')?.value}}
+          </td>
+          <td class="td-fix text-center">
+            <button class="btn btn-secondary cursor" (click)="edit(user)">Edit</button>
+            <button class="btn btn-danger cursor ms-2" (click)="delete(user.get('id')?.value)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

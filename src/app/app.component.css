@@ -1,0 +1,16 @@
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: #dee2e6;
+}
+
+.td-fix {
+  width: 22%;
+}
+
+.td-fix-10 {
+  width: 12%;
+}
+
+.cursor {
+  cursor: pointer !important;
+}
+
