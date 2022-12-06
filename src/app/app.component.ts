@@ -13,13 +13,44 @@ export class AppComponent implements OnInit {
   title = 'inline-table';
   userForm!: FormGroup;
   control!: FormArray;
-  id!: number;
   userData: User[] = [];
+
+  Country: any = [
+    { name: "Russia" },
+    { name: "Canada" },
+    { name: "United States" },
+    { name: "China" },
+    { name: "Brazil" },
+    { name: "Australia" },
+    { name: "India" },
+    { name: "Argentina" },
+    { name: "Kazakhstan" },
+    { name: "Sudan" }
+  ]
+
+  State: any = [
+    { name: "Adygea", country: "Russia" },
+    { name: "Altai", country: "Russia" },
+    { name: "British Columbia", country: "Canada" },
+    { name: "Washington", country: "United States" },
+    { name: "New York", country: "United States" },
+    { name: "Qinghai", country: "China" },
+    { name: "Acre", country: "Brazil" },
+    { name: "Amazonas", country: "Brazil" },
+    { name: "Victoria", country: "Australia" },
+    { name: "Queensland", country: "Australia" },
+    { name: "Gujarat", country: "India" },
+    { name: "Maharastra", country: "India" },
+    { name: "Rajasthan", country: "India" },
+    { name: "San Justo", country: "Argentina" },
+    { name: "Karaganda", country: "Kazakhstan" },
+    { name: "Kassala", country: "Sudan" },
+    { name: "Gezira", country: "Sudan" }
+  ]
 
   constructor(private fb: FormBuilder, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
     this.userForm = this.fb.group({
       users: this.fb.array([])
     });
@@ -114,6 +145,12 @@ export class AppComponent implements OnInit {
         alert('Something went wrong');
       }
     );
+  }
+
+  dropdownState: any = [];
+
+  dropdownStateList(value: any) {
+    this.dropdownState = this.State.filter((i: any) => i.country == value.target.value);
   }
 
 }

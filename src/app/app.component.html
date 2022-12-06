@@ -23,22 +23,14 @@
           </td>
           <td class="td-fix">
             <select id="country" class="form-select" name="country" aria-label="Default select example"
-              formControlName="country">
-              <option value="India">India</option>
-              <option value="Russia">Russia</option>
-              <option value="Canada">Canada</option>
-              <option value="United States">United States</option>
-              <option value="China">China</option>
+              formControlName="country" (change)="dropdownStateList($event)">
+              <option *ngFor="let country of Country" [value]="country.name">{{ country.name }}</option>
             </select>
           </td>
           <td class="td-fix">
             <select id="state" class="form-select" name="state" aria-label="Default select example"
               formControlName="state">
-              <option value="Gujarat">Gujarat</option>
-              <option value="Maharastra">Maharastra</option>
-              <option value="New York">New York</option>
-              <option value="Washington">Washington</option>
-              <option value="Amazonas">Amazonas</option>
+              <option *ngFor="let state of dropdownState" [value]="state.name">{{ state.name }}</option> 
             </select>
           </td>
           <td class="td-fix text-center">
