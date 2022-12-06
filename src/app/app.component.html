@@ -15,6 +15,7 @@
       </thead>
       <tbody class="align-middle" formArrayName="users" *ngFor="let user of usersData.controls ; let i=index">
         <tr *ngIf="user.get('isEditable')?.value" [formGroupName]="i">
+
           <td class="form-group td-fix-10">
             {{ i + 1 }}
           </td>
